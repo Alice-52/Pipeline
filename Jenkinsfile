@@ -6,5 +6,18 @@ pipeline {
                 sh 'python --version'
             }
         }
+        stage('test') {
+            steps {
+                sh 'echo "Тесты прошли (понарошку)"'
+            }
+        }
+    }
+    post {
+        success {
+            echo 'Pipeline отработал успешненько!'
+        }
+        failure {
+            echo 'Что-то я наворотила'
+        }
     }
 }
