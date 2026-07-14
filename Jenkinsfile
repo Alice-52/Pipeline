@@ -16,6 +16,21 @@ pipeline {
                 sh 'echo "Тесты прошли (понарошку)"'
             }
         }
+        stage('conditional check') {
+            steps {
+                script {
+                    def today = new Date()
+                    def dayName = today.format('EEEE')
+                    echo "Сегодня вот такой вот день: ${dayName}"
+
+                    if (dayName == 'Friday' || dayName == 'Saturday' || dayName == 'Sunday') {
+                        echo "ВЫХОДНЫЕ - ураураура!!!"
+                    } else {
+                        echo "Работаемработаем - рабочие будни"
+                    }
+                }
+            }
+        }
     }
     post {
         success {
